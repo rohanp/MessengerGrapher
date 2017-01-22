@@ -16,8 +16,8 @@ print("Total Messages: ", len(messages), "\n")
 
 msgs_by_day = {} # msgs[name] = [] * n_days, populated with message counts
 
-start_date = datetime.strptime(START_DATE, "%m/%d/%y")
-end_date = datetime.strptime(END_DATE, "%m/%d/%y")
+start_date = datetime.strptime(START_DATE, "%d/%m/%y")
+end_date = datetime.strptime(END_DATE, "%d/%m/%y")
 delta = (end_date - start_date).days
 
 for msg in messages:
