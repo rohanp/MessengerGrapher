@@ -19,7 +19,7 @@
 ## Results
 Here are a few examples of the type of graphs generated:
 
-![graph one](	https://s3.amazonaws.com/rohanp/cumulative3.png)
+![graph one](http://s3.amazonaws.com/rohanp/cumulative3.png)
 ![graph two](https://s3.amazonaws.com/rohanp/number_messaged_by_day3.png)
 ![graph three](https://s3.amazonaws.com/rohanp/messaging_by_sex3.png)
 ![graph four](https://s3.amazonaws.com/rohanp/total_sent_received3.png)
