@@ -1,5 +1,7 @@
 # Facebook Messenger Data Grapher
 
+****Use 64 bit Python or it will not work!!!!!!   <----- Important read this!****
+
 ## Dependencies
 * Python 3 ****64 bit****
 * Pandas
