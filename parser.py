@@ -33,13 +33,19 @@ def get_sex(name):
 
 for thread in soup.findAll('div', class_="thread"):
 
-    people = list(map(str.strip, thread.contents[0].split(',')))
+    #if isinstance(thread.contents[0], basestring):
+    #people = list(map(str.strip, thread.contents[0].split(',')))
+    #else:
+    try:
+        people = list(map(str.strip, thread.contents[0].split(',')))
+    except TypeError:
+        continue
 
     if 2 != len(people): # skip group chats for now
         continue
 
     person1, person2 = people
-    person = person1 if person2 == ME else person2 # who im talking to
+    person = person1 if person2 in ME else person2 # who im talking to
 
     for item in thread.contents[1:]:
 
@@ -55,7 +61,7 @@ for thread in soup.findAll('div', class_="thread"):
                 timestamp = parse(datestring)
 
             person_sending = item.contents[0].contents[0].contents[0]
-            sent_by_me = True if person_sending == ME else False
+            sent_by_me = person_sending in ME
 
             if person in name_to_sex.keys():
                 sex = name_to_sex[person]
