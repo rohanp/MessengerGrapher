@@ -78,12 +78,12 @@ for convo_file in os.listdir("messages"): # Iterate through each conversation fi
             person_sending = item.contents[0].contents[0].contents[0]
             sent_by_me = (person_sending == ME)
 
-            if person in name_to_sex.keys():
+            sex = "unknown"
+            if person in name_to_sex:
                 sex = name_to_sex[person]
             else:
-                if person not in name_to_sex:
-                    sex = get_sex(person)
-                    name_to_sex[person] = sex
+                sex = get_sex(person)
+                name_to_sex[person] = sex
 
             messages.append(Message(person, sent_by_me, timestamp, sex))
 
