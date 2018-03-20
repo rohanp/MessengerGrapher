@@ -12,7 +12,8 @@
 1. Install all the dependencies
 2. Download/clone this repository
 3. On Facebook, go to Settings then select "Download a copy of your Facebook data"
-4. Once you have that, find `messages.htm` inside the html folder and move that to the same folder as this repository
+4. Once you have that, find the `messages` folder inside the archive and copy that folder into your clone of this repository
+    - This folder should keep the same name (`messages`) and be placed at the top level of the repo
 5. Edit `userinfo.py` and add your information
 6. Run `python parser.py`
 7. Run `python grapher.py`
