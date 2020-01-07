@@ -36,7 +36,7 @@ def numTalkedToPlot(data, min_messages=1, rolling_window=1):
     talkedTo = data[ min_messages < data ]
     talkedTo = ~pd.isnull(talkedTo)
     toPlot = talkedTo.iloc[:,:].sum(axis=1)
-    return pd.rolling_mean(toPlot, rolling_window)
+    return toPlot.rolling(rolling_window).mean()
 
 toPlot = numTalkedToPlot(data)
 ax = toPlot.plot(title="Number of People Talked to", figsize=(10,3))
@@ -47,7 +47,7 @@ plt.clf()
 
 def everyonePlot(data, rolling_window=1):
     sum_data = data.iloc[:,:].sum(axis=1)
-    return pd.rolling_mean(sum_data, rolling_window)
+    return sum_data.rolling(rolling_window).mean()
 
 toPlot = everyonePlot(data, rolling_window=1)
 ax = toPlot.plot(title="Messaging Data")
@@ -102,7 +102,7 @@ plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
 fig = ax.get_figure()
 fig.savefig("graphs/cumulative_messaging_by_sex.png", bbox_inches='tight')
 
-toPlot = pd.rolling_mean(sex_data, 5)
+toPlot = sex_data.rolling(5).mean()
 
 ax = toPlot.plot(title="Messaging Data by Sex", legend=True,
                  color=color, figsize=(10,5))
