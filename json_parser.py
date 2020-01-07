@@ -7,33 +7,16 @@ import pickle as pkl
 from collections import namedtuple
 from datetime import datetime
 import json
-from requests import get
 import os
 from bs4 import BeautifulSoup
 from userinfo import ME, API_KEY
+from get_sex import get_sex
 
 if os.path.isfile("name_to_sex.pkl"):
     # Cache this data to avoid making requests to the API if possible
     name_to_sex = pkl.load(open("name_to_sex.pkl", 'rb'))
 else:
     name_to_sex = {}
-
-def get_sex(name):
-    """
-    Guess the gender of the sender based on gender-api.
-    """
-    if len(name.split(" ")) != 1:
-        name = name.split(" ")[0]
-
-    url = "https://gender-api.com/get?key=" + API_KEY + "&name=" + name
-
-    try:
-        response = get(url)
-        data = response.json()
-
-        return data["gender"]
-    except Exception:
-        return "unknown"
 
 Message = namedtuple("Message", ['person', 'sent_by_me', 'timestamp', 'sex'])
                             # types: str,      bool,         datetime,     str
