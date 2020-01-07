@@ -1,5 +1,8 @@
 *.htm
 .ipynb_checkpoints/*
-graphs/*
+graphs/
 *.pkl
-__pycache__/*
+__pycache__/
+messages/
+.vscode/
+.DS_Store
