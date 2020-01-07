@@ -24,9 +24,10 @@ messages = []
 
 START = len("Participants: ") # Prefix to strip from beginning of header
 
-for convo_file in os.listdir("messages"): # Iterate through each conversation file
+# Iterate through each conversation file
+for convo_file in os.listdir(os.path.join("messages", "inbox")):
     try:
-        soup = BeautifulSoup(open("messages/{}".format(convo_file),
+        soup = BeautifulSoup(open(os.path.join("messages", "inbox", convo_file),
                                   encoding='utf8').read(), 'html.parser')
     except IsADirectoryError: # Messages folder contains multimedia subdirectories
         continue
