@@ -1,6 +1,6 @@
 """
-This script parses the messages found in the exported data dump from Facebook
-into a pickled format that is used by the graphing script.
+This script parses the messages found in the exported data dump (HTML format)
+from Facebook into a pickled format that is used by the graphing script.
 """
 
 import pickle as pkl

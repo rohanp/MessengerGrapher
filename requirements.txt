@@ -1,3 +1,4 @@
 pandas
 matplotlib
 bs4
+requests
