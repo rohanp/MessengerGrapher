@@ -8,7 +8,6 @@ from collections import namedtuple
 from datetime import datetime
 import json
 import os
-from bs4 import BeautifulSoup
 from userinfo import ME, API_KEY
 from get_sex import get_sex
 
