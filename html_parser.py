@@ -1,16 +1,16 @@
 """
-This script parses the messages found in the exported data dump from Facebook
-into a pickled format that is used by the graphing script.
+This script parses the messages found in the exported data dump (HTML format)
+from Facebook into a pickled format that is used by the graphing script.
 """
 
 import pickle as pkl
 from collections import namedtuple
 from datetime import datetime
 import json
-from urllib.request import urlopen
 import os
 from bs4 import BeautifulSoup
 from userinfo import ME, API_KEY
+from get_sex import get_sex
 
 if os.path.isfile("name_to_sex.pkl"):
     # Cache this data to avoid making requests to the API if possible
@@ -18,33 +18,16 @@ if os.path.isfile("name_to_sex.pkl"):
 else:
     name_to_sex = {}
 
-def get_sex(name):
-    """
-    Guess the gender of the sender based on gender-api.
-    """
-    if len(name.split(" ")) != 1:
-        name = name.split(" ")[0]
-
-    url = "https://gender-api.com/get?key=" + API_KEY + "&name=" + name
-
-    try:
-        response = urlopen(url)
-        decoded = response.read().decode('utf-8')
-        data = json.loads(decoded)
-
-        return data["gender"]
-    except Exception:
-        return "unknown"
-
 Message = namedtuple("Message", ['person', 'sent_by_me', 'timestamp', 'sex'])
                             # types: str,      bool,         datetime,     str
 messages = []
 
 START = len("Participants: ") # Prefix to strip from beginning of header
 
-for convo_file in os.listdir("messages"): # Iterate through each conversation file
+# Iterate through each conversation file
+for convo_file in os.listdir(os.path.join("messages", "inbox")):
     try:
-        soup = BeautifulSoup(open("messages/{}".format(convo_file),
+        soup = BeautifulSoup(open(os.path.join("messages", "inbox", convo_file),
                                   encoding='utf8').read(), 'html.parser')
     except IsADirectoryError: # Messages folder contains multimedia subdirectories
         continue

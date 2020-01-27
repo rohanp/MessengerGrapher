@@ -11,11 +11,11 @@
 ## How To
 1. Install all the dependencies
 2. Download/clone this repository
-3. On Facebook, go to Settings then select "Download a copy of your Facebook data"
+3. On Facebook, go to Settings then select "Download a copy of your Facebook data" (you can select either HTML or JSON formats)
 4. Once you have that, find the `messages` folder inside the archive and copy that folder into your clone of this repository
     - This folder should keep the same name (`messages`) and be placed at the top level of the repo
 5. Edit `userinfo.py` and add your information
-6. Run `python parser.py`
+6. If you selected HTML format in step 3, run `python html_parser.py`; otherwise, run `python json_parser.py` for the JSON format 
 7. Run `python grapher.py`
 8. Graphs will be generated and saved in the `graphs` folder
 
